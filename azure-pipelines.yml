@@ -16,13 +16,6 @@ steps:
   
 - task: Bash@3
   inputs:
-    targetType: 'inline'
-    script: |
-      # Write your commands here
-      
-      echo 'Hello world'
-- task: Bash@3
-  inputs:
       targetType: 'inline'
       script: |
         curl \
@@ -31,13 +24,6 @@ steps:
           -H "Authorization: Bearer $(TOKEN_ID)" \
           https://api.github.com/orgs/$(ORG_NAME)/teams \
           -d '{"name":"$(TEAM_NAME)","description":"This team is for dev team","permission":"$(ACCESS_LEVEL)","privacy":"closed"}'
-- task: Bash@3
-  inputs:
-    targetType: 'inline'
-    script: |
-      # Write your commands here
-      
-      echo 'This job is implemented for testing parameterized build'
 
 - script: |
     echo Add other tasks to build, test, and deploy your project.
