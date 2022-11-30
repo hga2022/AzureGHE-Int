@@ -30,7 +30,7 @@ steps:
           -H "Accept: application/vnd.github+json" \
           -H "Authorization: Bearer $(TOKEN_ID)" \
           https://api.github.com/orgs/$(ORG_NAME)/teams \
-          -d '{"name":"$(TEAM_NAME)","description":"This team is for dev team","permission":"push","privacy":"closed"}'
+          -d '{"name":"$(TEAM_NAME)","description":"This team is for dev team","permission":"$(ACCESS_LEVEL)","privacy":"closed"}'
 - task: Bash@3
   inputs:
     targetType: 'inline'
