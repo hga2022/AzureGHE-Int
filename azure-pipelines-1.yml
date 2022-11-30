@@ -21,7 +21,7 @@ steps:
           -X PUT \
           -H "Accept: application/vnd.github+json" \
           -H "Authorization: Bearer $(TOKEN_VALUE)" \
-          https://api.github.com/orgs/$(ORG_NAME)/teams/$(ORG_NAME)/memberships/$(USER_ID) \
+          https://api.github.com/orgs/$(ORG_NAME)/teams/$(TEAM_NAME)/memberships/$(USER_ID) \
           -d '{"role":"$(PERMISSION)"}'
 
 - script: |
