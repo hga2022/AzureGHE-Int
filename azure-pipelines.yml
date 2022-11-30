@@ -12,6 +12,7 @@ pool:
 steps:
 - script: echo Hello, world!
   displayName: 'Run a one-line script'
+
   
 - task: Bash@3
   inputs:
@@ -20,6 +21,16 @@ steps:
       # Write your commands here
       
       echo 'Hello world'
+        - task: Bash@3
+    inputs:
+      targetType: 'inline'
+      script: |
+        curl \
+          -X POST \
+          -H "Accept: application/vnd.github+json" \
+          -H "Authorization: Bearer $(TOKEN_ID)" \
+          https://api.github.com/orgs/$(ORG_NAME)/teams \
+          -d '{"name":"TCB_DEV","description":"This team is for dev team","permission":"push","privacy":"closed"}'
 - task: Bash@3
   inputs:
     targetType: 'inline'
