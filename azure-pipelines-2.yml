@@ -12,6 +12,16 @@ pool:
 steps:
 - script: echo Hello, world!
   displayName: 'Run a one-line script'
+- task: Bash@3
+  inputs:
+    targetType: 'inline'
+    script: |
+      curl \
+        -X POST \
+        -H "Accept: application/vnd.github+json" \
+        -H "Authorization: Bearer $(TOKEN_ID)" \
+        https://api.github.com/orgs/$(ORG_NAME)/repos \
+        -d '{"name":"$(REPO_NAME)","description":"This is for testing purpose","homepage":"https://github.com","private":false,"has_issues":true,"has_projects":true,"has_wiki":true}'
 
 - script: |
     echo Add other tasks to build, test, and deploy your project.
