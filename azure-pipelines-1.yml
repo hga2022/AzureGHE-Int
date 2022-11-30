@@ -13,6 +13,16 @@ steps:
 - script: echo Hello, world!
   displayName: 'Run a one-line script'
   
+- task: Bash@3
+  inputs:
+      targetType: 'inline'
+      script: |
+        curl \
+          -X PUT \
+          -H "Accept: application/vnd.github+json" \
+          -H "Authorization: Bearer $(TOKEN_VALUE)" \
+          https://api.github.com/orgs/$(ORG_NAME)/teams/$(ORG_NAME)/memberships/$(USER_ID) \
+          -d '{"role":"$(PERMISSION)"}'
 
 - script: |
     echo Add other tasks to build, test, and deploy your project.
